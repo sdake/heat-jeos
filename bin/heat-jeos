@@ -161,7 +161,7 @@ def command_create(options, arguments):
             'found on disk. Do you want to build a fresh JEOS? (y/n) ')
 
     if should_build_jeos:
-        final_tdl = create_tdl(tdl_xml, options.iso, options.cfn_dir)
+        final_tdl = create_tdl(tdl_xml, options.iso)
 
         logging.info('Creating JEOS image (%s) - '
                      'this takes approximately 10 minutes.' % image_name)
@@ -239,9 +239,6 @@ def create_options(parser):
     parser.add_option('-a', '--auto-file', dest="auto",
                       default=False,
                       help="Path or url to auto file e.g. kickstart/preseed")
-    parser.add_option('-c', '--cfn-dir',
-                      default=DEFAULT_CFNTOOLS_DIR,
-                      help="Path to cfntools directory")
     parser.add_option('-v', '--verbose', default=False, action="store_true",
                       help="Print more verbose output")
     parser.add_option('-d', '--debug', default=False, action="store_true",
@@ -339,7 +336,6 @@ def parse_options(parser, cli_args):
             level=logging.WARNING)
 
     options.jeos_dir = os.path.join(os.getcwd(), options.jeos_dir)
-    options.cfn_dir = os.path.join(os.getcwd(), options.cfn_dir)
 
     return (options, command, args)
 

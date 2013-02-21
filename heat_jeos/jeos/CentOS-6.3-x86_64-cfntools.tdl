@@ -33,24 +33,14 @@ chmod +x /etc/rc.d/rc.local
 yum -y update
 curl -O http://ftp.ps.pl/pub/Linux/fedora-epel/6/i386/epel-release-6-7.noarch.rpm
 rpm -Uvh epel-release-6-7.noarch.rpm
-yum -y install perl python python-setuptools cloud-init
-easy_install argparse
+yum -y install perl python python-setuptools cloud-init python-pip
+pip-python install argparse 'boto==2.5.2' heat-cfntools
+cfn-create-aws-symlinks --source /usr/bin
 rm -f epel-release-6-7.noarch.rpm
-    </command>
-    <command name='cfn-perms'>
-chmod +x /opt/aws/bin/cfn-*
     </command>
     <command name='post-configuration'>
 chkconfig --level 345 sshd on
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
     </command>
   </commands>
-  <files>
-    <file name='/opt/aws/bin/cfn-init'  type='base64'></file>
-    <file name='/opt/aws/bin/cfn-hup'  type='base64'></file>
-    <file name='/opt/aws/bin/cfn-signal'  type='base64'></file>
-    <file name='/opt/aws/bin/cfn_helper.py'  type='base64'></file>
-    <file name='/opt/aws/bin/cfn-get-metadata'  type='base64'></file>
-    <file name='/opt/aws/bin/cfn-push-stats'  type='base64'></file>
-  </files>
 </template>

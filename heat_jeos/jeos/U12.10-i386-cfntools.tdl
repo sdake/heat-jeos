@@ -3,7 +3,7 @@
   <os>
     <name>Ubuntu</name>
     <version>12.10</version>
-    <arch>xi386</arch>
+    <arch>i386</arch>
     <install type='iso'>
       <iso>file:/var/lib/libvirt/images/ubuntu-12.10-server-i386.iso</iso>
     </install>

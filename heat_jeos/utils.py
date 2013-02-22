@@ -12,7 +12,6 @@ from oz import ozutil
 
 jeos_module_path = os.path.abspath(os.path.dirname(__file__))
 DEFAULT_JEOS_DIR = os.path.join(jeos_module_path, 'jeos')
-DEFAULT_CFNTOOLS_DIR = os.path.join(jeos_module_path, 'cfntools')
 
 
 def template_metadata(template_path):
@@ -53,7 +52,7 @@ def get_oz_guest(tdl_xml, auto=None):
 def build_image_from_tdl(tdl_xml):
     oz_guest = get_oz_guest(tdl_xml)
     dsk_path, qcow2_path, image_name = target_image_paths(oz_guest)
-    final_tdl = create_tdl(tdl_xml, None, DEFAULT_CFNTOOLS_DIR)
+    final_tdl = create_tdl(tdl_xml, None)
     return build_jeos(get_oz_guest(final_tdl))
 
 
@@ -72,7 +71,7 @@ def ensure_xml_path(element, path):
     ensure_xml_path(el, path[1:])
 
 
-def create_tdl(tdl, iso_path, cfn_dir):
+def create_tdl(tdl, iso_path):
     """
     Prepare the template for use with Heat.
 
@@ -82,18 +81,6 @@ def create_tdl(tdl, iso_path, cfn_dir):
     """
     tdl_xml = etree.parse(StringIO(tdl))
 
-    # Load the cfntools into the cfntool image by encoding them in base64
-    # and injecting them into the TDL at the appropriate place
-    cfn_tools = ['cfn-init', 'cfn-hup', 'cfn-signal',
-                'cfn-get-metadata', 'cfn_helper.py', 'cfn-push-stats']
-    for cfnname in cfn_tools:
-        cfnpath = "files/file[@name='/opt/aws/bin/%s']" % cfnname
-        elem = tdl_xml.find(cfnpath)
-        if elem is not None:
-            f = open('%s/%s' % (cfn_dir, cfnname), 'r')
-            cfscript_e64 = base64.b64encode(f.read())
-            f.close()
-            elem.text = cfscript_e64
     if iso_path:
         root = tdl_xml.getroot()
         ensure_xml_path(root, ['os', 'install', 'iso'])

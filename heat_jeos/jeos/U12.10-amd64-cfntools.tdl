@@ -13,7 +13,7 @@
     <command name='commands'>
 apt-get -y update
 apt-get -y upgrade
-apt-get -y install python-argparse chkconfig cloud-init python-psutil python-pip
+apt-get -y install python-argparse cloud-init python-psutil python-pip
 apt-get -y remove python-boto
 
 /usr/sbin/useradd -m ec2-user

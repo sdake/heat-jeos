@@ -27,7 +27,7 @@ setuptools.setup(
     license='Apache License (2.0)',
     author='Heat API Developers',
     author_email='discuss@heat-api.org',
-    url='http://heat-api.org.org/',
+    url='http://heat-api.org/',
     packages=setuptools.find_packages(exclude=['bin']),
     include_package_data=True,
     classifiers=[

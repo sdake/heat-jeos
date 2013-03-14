@@ -18,15 +18,6 @@ NM_CONTROLLED="yes"
 ONBOOT="yes"
 EOF
     </command>
-    <command name='user'>
-/usr/sbin/useradd ec2-user
-echo -e 'ec2-user\tALL=(ALL)\tNOPASSWD: ALL' >> /etc/sudoers
-    </command>
-    <command name='selinux'>
-cat >> /etc/rc.d/rc.local &lt;&lt; EOF
-#!/bin/bash
-setenforce 0
-EOF
 chmod +x /etc/rc.d/rc.local
     </command>
     <command name='packages'>

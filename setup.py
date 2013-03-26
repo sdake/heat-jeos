@@ -21,12 +21,12 @@ import setuptools
 
 setuptools.setup(
     name='heat-jeos',
-    version='7',
+    version='8',
     description='The heat-jeos project provides services for creating '
                 '(J)ust (E)nough (O)perating (S)ystem images',
     license='Apache License (2.0)',
     author='Heat API Developers',
-    author_email='discuss@heat-api.org',
+    author_email='openstack@lists.launchpad.net',
     url='http://heat-api.org/',
     packages=setuptools.find_packages(exclude=['bin']),
     include_package_data=True,

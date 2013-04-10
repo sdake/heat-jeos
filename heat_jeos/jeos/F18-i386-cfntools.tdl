@@ -19,5 +19,8 @@ pip-python install heat-cfntools
 cfn-create-aws-symlinks --source /usr/bin
 
     </command>
+    <command name='firewall'>
+systemctl disable firewalld.service
+    </command>
   </commands>
 </template>

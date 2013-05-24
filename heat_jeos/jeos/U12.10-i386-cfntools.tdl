@@ -10,6 +10,9 @@
   </os>
   <description>Ubuntu 12.10</description>
   <commands>
+    <command>
+passwd -l root
+    </command>
     <command name='commands'>
 apt-get -y update
 apt-get -y upgrade

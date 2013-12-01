@@ -10,7 +10,7 @@
   </os>
   <description>CentOS 6.3</description>
   <commands>
-    <command>
+    <command name='set root pw'>
 passwd -l root
     </command>
     <command name='network-config'>
@@ -21,6 +21,7 @@ NM_CONTROLLED="yes"
 ONBOOT="yes"
 EOF
     </command>
+    <command name='chmod rc.local'>
 chmod +x /etc/rc.d/rc.local
     </command>
     <command name='packages'>

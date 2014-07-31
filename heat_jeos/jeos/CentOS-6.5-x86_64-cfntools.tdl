@@ -5,10 +5,10 @@
     <version>3</version>
     <arch>x86_64</arch>
     <install type='iso'>
-      <iso>file:/var/lib/libvirt/images/CentOS-6.3-x86_64-bin-DVD1.iso</iso>
+      <iso>file:/var/lib/libvirt/images/CentOS-6.5-x86_64-bin-DVD1.iso</iso>
     </install>
   </os>
-  <description>CentOS 6.3</description>
+  <description>CentOS 6.5</description>
   <commands>
     <command name='set root pw'>
 passwd -l root
@@ -26,7 +26,7 @@ chmod +x /etc/rc.d/rc.local
     </command>
     <command name='packages'>
 yum -y update
-curl -O http://ftp.ps.pl/pub/Linux/fedora-epel/6/i386/epel-release-6-7.noarch.rpm
+curl -O http://ftp.ps.pl/pub/Linux/fedora-epel/6/x86_64/epel-release-6-7.noarch.rpm
 rpm -Uvh epel-release-6-7.noarch.rpm
 yum -y install perl python python-setuptools cloud-init python-pip
 pip-python install argparse 'boto==2.5.2' heat-cfntools
